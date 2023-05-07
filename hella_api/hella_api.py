@@ -22,7 +22,7 @@ class HellaApi():
 	def methods(self, method, **params):
 		url = 'https://api.hella.team/method/'+ method
 		params['access_token'] = self.token
-		if "v" not is params:
+		if "v" not in params:
 			params["v"] = 2
 		response = requests.get(url=url, params=params)
 		if response.status_code == 200:
