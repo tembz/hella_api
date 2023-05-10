@@ -1,16 +1,16 @@
-from hella_api import HellaApi, Handler
+from hella_api import Handler, HellaApi
 from tokens import HELLA
 
-api = HellaApi(HELLA)
-api2 = Handler(HELLA)
+hella = Handler(HELLA)
 
-#Option 1:
-get_group = api.methods(method='getGroups', user_id=1)
-print(get_group)
+get_sticker = hella.getSticker(product_id=1, sticker_id=None) #информация о стикер-паке
 
-#Option 2:
-get_group = api2.getGroups(user_id=1)
-print(get_group)
+hella2 = HellaApi(HELLA)
 
+get_groups = hella2.methods(method='getGroups', user_id=1) #информация о группах пользователя
 
+#разработчик апи: vk.com/robert_meow, в случае непоняток апи обращаться к нему
 
+#создатель модуля: vk.com/tembz, в случае багов библиотеки обращаться к нему
+
+#получить токен от hella api можно в группе vk.com/hella_api
