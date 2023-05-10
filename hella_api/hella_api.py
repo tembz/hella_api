@@ -22,11 +22,21 @@ class HellaApi():
 	def methods(self, method, **params):
 		url = 'https://api.hella.team/method/'+ method
 		params['access_token'] = self.token
-		if "v" not in params:
+		if 'v' not in params:
 			params['v'] = 2
+		if method == 'GenerationQuotes':
+			ava = params['ava']
+			ava = requests.get(ava).content
+			files = [('ava_bytes', ('file.jpg', ava))]			
+			response = requests.post(url=url, files=files, params=params)
+			if response.status_code != 200:
+				code_info = status_codes(response.status_code)
+				raise HellaError(code_info)
+			else:
+				return response.content
 		response = requests.get(url=url, params=params)
 		if response.status_code == 200:
-			if method == 'GenerationTTS' or method == 'GenerationQuotes':
+			if method == 'GenerationTTS':
 				return response.content
 			else:
 				if response.json()['ok'] == False:
