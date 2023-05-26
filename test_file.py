@@ -1,3 +1,4 @@
+''' В коде показаны два разных способа! '''
 from hella_api import Handler, HellaApi
 from tokens import HELLA
 
